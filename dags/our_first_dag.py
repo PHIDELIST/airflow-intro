@@ -7,7 +7,7 @@ default_args={
     'retry_delay':timedelta(minutes=2)
 }
 with DAG (
-    dag_id='my_first_dag_v3',
+    dag_id='my_first_dag_v4',
     default_args=default_args,
     description='this is my forst dag to write',
     start_date=datetime(2024,1,29,2),
@@ -27,5 +27,14 @@ with DAG (
         bash_command='echo hello world, this is the task three and it will be runned after task 1 at same time as task two!'
     )
 
-    task1.set_downstream(task2)
-    task1.set_downstream(task3)
+    #Task dependancy method 1
+    #task1.set_downstream(task2)
+    #task1.set_downstream(task3)
+
+    #Task dependancy method2
+    
+    #task1 >> task2
+    #task1 >> task3
+
+    #Task dependancy method 3
+    task1 >> [task2,task3]
