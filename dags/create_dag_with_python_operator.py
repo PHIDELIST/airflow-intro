@@ -4,6 +4,7 @@ from airflow.operators.python import PythonOperator
 #XComs (short for “cross-communications”) are a mechanism that let Tasks talk to each other, as by default Tasks are entirely isolated and may be running on entirely different machines.
 #An XCom is identified by a key (essentially its name), as well as the task_id and dag_id it came from. They can have any (serializable) value, but they are only designed for small amounts of data; do not use them to pass around large values, like dataframes.
 #XComs are explicitly “pushed” and “pulled” to/from their storage using the xcom_push and xcom_pull methods on Task Instances.
+#max size of xcom is 48KB
 default_args = {
     'owner':'phidelist',
     'retries':0,
